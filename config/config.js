@@ -10,10 +10,10 @@ module.exports = {
     "define": {"underscored": true}
 },
 "test": {
-    "username": root,
+    "username": "root",
     "password": null,
-    "database": db_test,
-    "host": localhost,
+    "database": "db_test",
+    "host": "localhost",
     "dialect": "mysql",
     "define": {"underscored": true}
 },
