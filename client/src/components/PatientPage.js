@@ -1,20 +1,69 @@
-import React, {useEffect , useState} from 'react';
-import { read } from '../services/network';
-import './PatientPage.css';
+import React, { useEffect, useState } from "react";
+import { read, create } from "../services/network";
+import "./PatientPage.css";
+import Grid from "@material-ui/core/Grid";
+import { useForm } from "react-hook-form";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import TextField from "@material-ui/core/TextField";
+import Select from "@material-ui/core/Select";
+import { Input } from "@material-ui/core";
+import InputLabel from "@material-ui/core/InputLabel";
+
 
 function PatientPage() {
-    const [data, setData] = useState(null);
-
+    const [data, setData] = useState([]);
+    const [open, setOpen] = useState(false);
     const [display, setDisplay] = useState(0);
-
-    useEffect(() => {getInfo();} , []);
-    
-    const getInfo = async () => {
-       await read(`patients`).then(r => {setData(r)}).catch(err => console.log(err));
+    const [cities, setCities] = useState(null);
+    const [hospitals, setHospitals] = useState(null);
+  
+    useEffect(() => {
+      getInfo();
+      getCities();
+      getHospital();
+    }, []);
+  
+    const getCities = async () => {
+      await read(`cities`).then((r) => {
+        setCities(r);
+      });
     };
-
-    console.log(data);
-    console.log("render");
+  
+    const getHospital = async () => {
+      await read(`hospitals`).then((r) => {
+        setHospitals(r);
+      });
+    };
+  
+    const {
+      register: addPatient,
+      errors: patientError,
+      handleSubmit: submitPatient,
+    } = useForm({
+      mode: "onBlur",
+    });
+  
+    const onAddPatient = (data) => {
+      console.log(data);
+      setOpen(false);
+      create("patients", data).then((result) => {
+        console.log(result);
+      });
+    };
+  
+    const getInfo = async () => {
+      await read(`patients`).then((r) => {
+        setData(r);
+      });
+    };
 
     return (
         <>
@@ -36,6 +85,117 @@ function PatientPage() {
             {display.SymptomsByPatients.map((e) => <li>{e.Symptom.name}</li>)}
             </ul>
             </div>}
+            <IconButton onClick={() => setOpen(true)}>
+        <AddCircleIcon />
+        <Typography variant="h6">add patient</Typography>
+      </IconButton>
+
+      {open && (
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          aria-labelledby="form-dialog-title"
+        >
+          <form
+            // className={classes.root}
+            onSubmit={submitPatient(onAddPatient)}
+            noValidate
+            autoComplete="off"
+          >
+            <DialogTitle id="form-dialog-title">Add Patient</DialogTitle>
+            <DialogContent>
+              <TextField
+                inputRef={addPatient}
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Patient Name"
+                name="name"
+                type="text"
+                fullWidth
+              />
+              <TextField
+                InputLabelProps={{ shrink: true }}
+                inputRef={addPatient}
+                autoFocus
+                margin="dense"
+                id="date Of Birth"
+                label="date Of Birth"
+                name="dateOfBirth"
+                type="date"
+                fullWidth
+              />
+              {cities && (
+                <Grid item>
+                  <InputLabel htmlFor="selectCity">city</InputLabel>
+                  <Select
+                    native
+                    id="selectCity"
+                    placeholder="city"
+                    inputRef={addPatient({ required: true })}
+                    name="cityId"
+                  >
+                    <option aria-label="None"></option>
+                    {cities.map((city, index) => {
+                      return (
+                        <option key={index} value={city.id}>
+                          {city.name}
+                        </option>
+                      );
+                    })}
+                  </Select>
+                </Grid>
+              )}
+              <Grid item>
+                <InputLabel htmlFor="status">status</InputLabel>
+                <Select
+                  native
+                  id="selectStatus"
+                  placeholder="status"
+                  inputRef={addPatient({ required: true })}
+                  name="status"
+                >
+                  <option aria-label="None"></option>
+                  <option value="sick">sick</option>
+                  <option value="respiratory">respiratory</option>
+                  <option value="recovered">recovered</option>
+                  <option value="dead">dead</option>
+                  <option value="isolation">isolation</option>
+                </Select>
+              </Grid>
+              {hospitals && (
+                <Grid item>
+                  <InputLabel htmlFor="selectHospital">hospital</InputLabel>
+                  <Select
+                    native
+                    id="selectHospital"
+                    placeholder="hospital"
+                    inputRef={addPatient({ required: true })}
+                    name="hospitalId"
+                  >
+                    <option aria-label="None"></option>
+                    {hospitals.map((hospital, index) => {
+                      return (
+                        <option key={index} value={hospital.id}>
+                          {hospital.name}
+                        </option>
+                      );
+                    })}
+                  </Select>
+                </Grid>
+              )}
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setOpen(false)} color="primary">
+                Cancel
+              </Button>
+              <Button type="submit" color="primary">
+                Submit
+              </Button>
+            </DialogActions>
+          </form>
+        </Dialog>
+      )}
     </div>
 
     :
