@@ -9,6 +9,7 @@ module.exports = {
     "dialect": "mysql",
     "define": {"underscored": true}
 },
+//if you change this to use the tests, return it to this variables after you finish the work!!! 
 "test": {
     "username": "root",
     "password": null,
