@@ -20,12 +20,11 @@ function HomePage() {
     const deadCount = Array.isArray(data) ? data.filter(e => e.status === 'dead').length : -1;
     const resCount = Array.isArray(data) ? data.filter(e => e.status === 'respiratory').length : -1;
 
-    return (
-    <div id="home">
+    return (<div id="home">
+        <div className="icon-corona"/>
         <h1>CoronaVirus</h1>
-        <h2>Israel 
-            <span className="icon-israel"/>
-             Nation</h2>
+        <h2>Israel Nation</h2>
+        <div className="icon-israel"/>
         <div className="header">Total Cases</div>
         <div className="cases">{data.length}</div>
         <div className="header">Total In Respiratory State</div>
