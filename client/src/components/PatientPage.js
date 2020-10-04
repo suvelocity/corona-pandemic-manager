@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { read, create } from "../services/network";
 import "./PatientPage.css";
@@ -16,6 +17,8 @@ import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import { Input } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
+import gif from '../media/corona_gif.gif';
+
 
 
 function PatientPage() {
@@ -200,6 +203,7 @@ function PatientPage() {
 
     :
     <div>
+        <img src={gif} alt="loading..." />
         <h1>server not connected</h1>
     </div>
 }

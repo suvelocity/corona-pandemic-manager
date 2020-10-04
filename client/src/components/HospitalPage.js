@@ -1,9 +1,10 @@
 import React, {useEffect , useState} from 'react';
 import { read } from '../services/network';
+import gif from '../media/corona_gif.gif';
 import './HospitalPage.css';
 
 function HospitalPage() {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
 
     const [display, setDisplay] = useState(0);
 
@@ -35,6 +36,7 @@ function HospitalPage() {
     </div>
     : 
     <div>
+        <img src={gif} alt="loading..." />
         <h1>server is not connected</h1>
     </div>
 }
