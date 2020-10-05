@@ -26,6 +26,7 @@ this challenge will test your Back-End skills. you are required to use express.j
 - SQL only!
 - Use Sequelize
 - Database name has to be called - "covid_19"
+- Test DataBase name should be "db_test"
 
 ### Patients Table
 - Columns: id, dateOfBirth, name, symptom, status('sick', 'respiratory', 'recovered', 'dead', 'isolation'), cityId, hospitalId.
