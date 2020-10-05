@@ -39,7 +39,7 @@ this challenge will test your Back-End skills. you are required to use express.j
 ### Symptompes Table
 - Columns: id, name
 ### SymptompesByPatients Table
-- Columns: id, patientId, symptonId
+- Columns: id, patientId, symptomId
 ### CovidTests Table
 - Columns: id, patientId, isSick(boolean).
 
