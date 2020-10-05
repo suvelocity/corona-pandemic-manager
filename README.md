@@ -13,13 +13,15 @@ this challenge will test your Back-End skills. you are required to use express.j
 * [Rest API Requirement](#Rest-API-Requirement)
 
 ## Tasks
+- run sequelize init, define the config file as js and also change the its reference in index file so it will run.
+- run the client- it will not work till you finish the functionality in the server. 
+- Use underscore in DB in all the models tables. In node it should perform in camelCase. Hint: ("define": {"underscored": true})
 - Create the right migrations and models based on the requirements we give (you can run the seed files with npx sequelize db:seed:all to see that the tables are right)
 - Create an express server that will analyze details from the data base and display it to the client.
 - Build [Rest-API](#Rest-API) for each model in the data base.
 - Pass all the tests.
 - Use the Sequelize Paranoid (in all tables), make sure that all models have "deletedAt" column.
-- Use underscore in DB in all the models tables. In node it should perform in camelCase. Hint: ("define": {"underscored": true})
-- After you created all your models and tables you can run the seeders command, that will run the seeders file that you have in your backend (command: npx sequlize-cli db:seed:all)
+- After you created all your models and tables you can copy the build seeders to your seeders, and run the seeders command, that will run the seeders file that you have in your backend (command: npx sequlize-cli db:seed:all)
 
 ## Database Requirements(the test checks that)
 ### Database
