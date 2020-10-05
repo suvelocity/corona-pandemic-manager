@@ -29,6 +29,15 @@ this challenge will test your Back-End skills. you are required to use express.j
 - Use Sequelize
 - Database name has to be called - "covid_19"
 - Test DataBase name should be "db_test"
+- When submiting change the test section in config file to be:
+"test": {
+    "username": "root",
+    "password": null,
+    "database": "db_test",
+    "host": "localhost",
+    "dialect": "mysql",
+    "define": {"underscored": true}
+},
 
 ### Patients Table
 - Columns: id, dateOfBirth, name, symptom, status('sick', 'respiratory', 'recovered', 'dead', 'isolation'), cityId, hospitalId.
