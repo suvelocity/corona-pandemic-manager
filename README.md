@@ -36,9 +36,9 @@ this challenge will test your Back-End skills. you are required to use express.j
 - Columns: id, name, population.
 ### Hospitals Table
 - Columns: id, name, respiratorAmount, maxCapacity. 
-### Symptompes Table
+### Symptomps Table
 - Columns: id, name
-### SymptomesByPatients Table
+### SymptomsByPatients Table
 - Columns: id, patientId, symptomId
 ### CovidTests Table
 - Columns: id, patientId, isSick(boolean).
