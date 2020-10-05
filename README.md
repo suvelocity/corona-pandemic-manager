@@ -92,6 +92,6 @@ this challenge will test your Back-End skills. you are required to use express.j
 
 #### DELETE Methods
 - DELETE a patient with paranoid.
-- DELETE "/api/vi/covidtests/:testId a covid test.
+- DELETE "/api/v1/covidtests/:testId a covid test.
 
 ## Good Luck!
