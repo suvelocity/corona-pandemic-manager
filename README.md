@@ -79,7 +79,7 @@ Remember to add "require('dotenv').config();" at the top of the config.js file t
 #### GET Methods
 - GET "/api/v1/hospitals" all hospitals with their capacity (maxCapacity), number of respirator (respiratorAmount)
 - GET "/api/v1/hospitals/byId/:hospitalId" Hospital by id.
-- GET "/api/v1/hospitals/respirator_luck" all the hospitals that need to bring more respirator machines (less than five machines that are available in the hospital).
+- GET "/api/v1/hospitals/respirator_luck" all the hospitals that need to bring more respirator machines (Less than 5 machines that are available in the hospital - (number of machines in the hospitals - number of pateints in that hospital that their status is "resperatory") > 5).
 
 ### Cities
 #### GET Methods
